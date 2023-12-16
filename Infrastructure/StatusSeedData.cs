@@ -1,10 +1,9 @@
 using Domain;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure;
 
-public class SeedData
+public static class StatusSeedData
 {
     public static void Initialize(IServiceProvider serviceProvider)
     {

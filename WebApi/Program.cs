@@ -63,6 +63,6 @@ app.UseSwaggerUI(c =>
 
 app.MapControllers();
 
-SeedData.Initialize(app.Services);
+StatusSeedData.Initialize(app.Services);
 
 app.Run();

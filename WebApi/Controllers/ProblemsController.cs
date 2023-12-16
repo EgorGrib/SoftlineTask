@@ -40,6 +40,11 @@ public class ProblemsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddProblem(ProblemDto problem)
     {
+        if (string.IsNullOrWhiteSpace(problem.Description) || string.IsNullOrWhiteSpace(problem.Name))
+        {
+            return BadRequest(new { Error = "Problem name and description required" });
+        }
+        
         var newProblem = new Problem(0, problem.Name, problem.Description, 1);
         await _dbContext.Problems.AddAsync(newProblem);
         await _dbContext.SaveChangesAsync();
@@ -56,6 +61,16 @@ public class ProblemsController : ControllerBase
         {
             return NotFound("Problem not found");
         }
+        
+        if (updatedProblem.StatusId is < 1 or > 3)
+        {
+            return BadRequest(new { Error = "Status codes in the range from 1 to 3 (created, in progress, done)" });
+        }
+        
+        if (string.IsNullOrWhiteSpace(updatedProblem.Description) || string.IsNullOrWhiteSpace(updatedProblem.Name))
+        {
+            return BadRequest(new { Error = "Problem name and description required" });
+        }
 
         existingProblem.Name = updatedProblem.Name;
         existingProblem.Description = updatedProblem.Description;
@@ -63,7 +78,7 @@ public class ProblemsController : ControllerBase
 
         await _dbContext.SaveChangesAsync();
 
-        return NoContent();
+        return Ok(existingProblem);
     }
     
     [HttpDelete("{id:int}")]
