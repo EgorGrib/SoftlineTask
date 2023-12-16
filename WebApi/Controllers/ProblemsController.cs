@@ -18,15 +18,16 @@ public class ProblemsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Problem>>> GetTasks()
+    public async Task<ActionResult<IEnumerable<Problem>>> GetProblems()
     {
-        return await _dbContext.Problems.Include(t => t.Status).ToListAsync();
+        return await _dbContext.Problems.Include(p => p.Status).ToListAsync();
     }
     
     [HttpGet("{id:int}")]
     public async Task<ActionResult<Problem>> GetProblemById(int id)
     {
-        var problem = await _dbContext.Problems.FindAsync(id);
+        var problem = await _dbContext.Problems.Include(p => p.Status)
+            .FirstOrDefaultAsync(p => p.Id == id);
 
         if (problem == null)
         {
@@ -42,7 +43,6 @@ public class ProblemsController : ControllerBase
         var newProblem = new Problem(0, problem.Name, problem.Description, 1);
         await _dbContext.Problems.AddAsync(newProblem);
         await _dbContext.SaveChangesAsync();
-        //var task = _dbContext.Problems.FirstOrDefault(p => p.Id == newProblem.Id);
         return Ok(newProblem);
     }
     
