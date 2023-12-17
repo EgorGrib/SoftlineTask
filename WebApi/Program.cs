@@ -21,7 +21,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowOrigin", corsPolicyBuilder =>
-        corsPolicyBuilder.WithOrigins("http://localhost:3000") // Здесь укажите адрес вашего React-приложения
+        corsPolicyBuilder.WithOrigins("http://localhost:3000")
             .AllowAnyHeader()
             .AllowAnyMethod());
 });
@@ -34,7 +34,6 @@ if (app.Environment.IsDevelopment())
     var db = scope.ServiceProvider.GetRequiredService<SoftlineTaskDb>();
     db.Database.EnsureDeleted();
     db.Database.EnsureCreated();
-    //db.Database.Migrate();
 }
 
 app.UseAuthentication();
