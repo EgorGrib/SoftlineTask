@@ -45,7 +45,7 @@
 - `GET /api/statuses`: Получить список всех статусов.
   
 <br>
-<p align="center" style="filter: drop-shadow(3px 4px 5px #000);">
+<p align="center" style="filter: drop-shadow(3px 4px 5px #fff);">
 <img src="Pics/Screenshot_115.png" width="600">
 </p>
 <p align="center" style="filter: drop-shadow(3px 4px 5px #000);">

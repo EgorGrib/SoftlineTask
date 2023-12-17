@@ -94,3 +94,7 @@ th {
     background-color: red;
     margin-right: 0;
 }
+
+form button {
+    margin-top: 50px;
+}
