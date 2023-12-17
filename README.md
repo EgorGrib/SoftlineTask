@@ -45,10 +45,10 @@
 - `GET /api/statuses`: Получить список всех статусов.
   
 <br>
-<p align="center">
-<img src="Pics/Screenshot_115.png" width="400">
+<p align="center" style="filter: drop-shadow(3px 4px 5px #000);">
+<img src="Pics/Screenshot_115.png" width="600">
 </p>
-<p align="center">
-<img src="Pics/Screenshot_114.png" width="250">
-<p align="center">
-<img src="Pics/Screenshot_113.png" width="250">
+<p align="center" style="filter: drop-shadow(3px 4px 5px #000);">
+<img src="Pics/Screenshot_114.png" width="300">
+<p align="center" style="filter: drop-shadow(3px 4px 5px #000);">
+<img src="Pics/Screenshot_113.png" width="300">
