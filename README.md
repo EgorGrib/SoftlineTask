@@ -43,7 +43,12 @@
 ### Статусы
 
 - `GET /api/statuses`: Получить список всех статусов.
-
-![](Pics/Screenshot_115.png)
-![](Pics/Screenshot_114.png)
-![](Pics/Screenshot_113.png)
+  
+<br>
+<p align="center">
+<img src="Pics/Screenshot_115.png" width="400">
+</p>
+<p align="center">
+<img src="Pics/Screenshot_114.png" width="250">
+<p align="center">
+<img src="Pics/Screenshot_113.png" width="250">
