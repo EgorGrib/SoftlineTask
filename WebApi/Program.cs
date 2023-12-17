@@ -18,11 +18,13 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
-/*services.Configure<JsonOptions>(options =>
+builder.Services.AddCors(options =>
 {
-    options.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
-});*/
+    options.AddPolicy("AllowOrigin", corsPolicyBuilder =>
+        corsPolicyBuilder.WithOrigins("http://localhost:3000") // Здесь укажите адрес вашего React-приложения
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
 
 var app = builder.Build();
 
@@ -34,23 +36,6 @@ if (app.Environment.IsDevelopment())
     db.Database.EnsureCreated();
     //db.Database.Migrate();
 }
-    
-/*app.UseExceptionHandler(errorApp =>
-{
-    errorApp.Run(async context =>
-    {
-        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-        context.Response.ContentType = "text/plain";
-
-        var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
-        var exception = exceptionHandlerPathFeature?.Error;
-
-        if (exception == null) 
-            await context.Response.WriteAsync("An error occurred");
-        else 
-            await context.Response.WriteAsync(exception.Message);
-    });
-});*/
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -64,5 +49,7 @@ app.UseSwaggerUI(c =>
 app.MapControllers();
 
 StatusSeedData.Initialize(app.Services);
+
+app.UseCors("AllowOrigin");
 
 app.Run();

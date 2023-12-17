@@ -11,9 +11,9 @@ public static class StatusSeedData
         var context = scope.ServiceProvider.GetRequiredService<SoftlineTaskDb>();
         if (context.Statuses.Any()) return;
         context.Statuses.AddRange(
-            new Status { StatusName = "Создана" },
-            new Status { StatusName = "В работе" },
-            new Status { StatusName = "Завершена" }
+            new Status { StatusName = "Created" },
+            new Status { StatusName = "In progress" },
+            new Status { StatusName = "Done" }
         );
         context.SaveChanges();
     }
